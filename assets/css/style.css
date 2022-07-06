@@ -1,0 +1,125 @@
+* {
+    margin: auto;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: whitesmoke;
+    height:auto;
+    font-size: 20px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.buttonHeader {
+    background-color: whitesmoke;
+    text-decoration: none;
+    color: #2C5F78;
+}
+
+.timeLeft {
+    text-decoration: none;
+    color: #2C5F78;
+}
+
+#mainDiv {
+    margin-top: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#gridContainer {
+    display: grid;
+
+}
+
+#start-quiz {
+    border-radius: 15px;
+    background-color: #2C5F78;
+    color: whitesmoke;
+}
+
+#submitScore {
+    border-radius: 15px;
+    background-color: #2C5F78;
+    color: whitesmoke
+}
+
+.btn {
+    background-color: whitesmoke;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px;
+}
+
+#answerA {
+    border-radius: 50%;
+}
+
+#answerB {
+    border-radius: 50%;
+}
+
+#answerC {
+    border-radius: 50%;
+}
+
+#answerD {
+    border-radius: 50%;
+}
+
+/* Hover Effects */
+.buttonHeader:hover {
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    box-shadow: inset 100px 0 0 0 #2C5F78;
+    color: white;
+}
+
+#start-quiz:hover {
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    box-shadow: inset 100px 0 0 0 whitesmoke;
+    color: #2C5F78;
+}
+
+#submitScore:hover {
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    box-shadow: inset 100px 0 0 0 whitesmoke;
+    color: #2C5F78;
+}
+
+#answerA:hover {
+    transition: color .3s ease-in-out box-shadow .3s ease-in-out;
+    box-shadow: inset 100px 0 0 0; 
+    color: #0E1E2B;
+}
+
+#answerB:hover {
+    transition: color .3s ease-in-out box-shadow .3s ease-in-out;
+    box-shadow: inset 100px 0 0 0; 
+    color: #0E1E2B;
+}
+
+#answerC:hover {
+    transition: color .3s ease-in-out box-shadow .3s ease-in-out;
+    box-shadow: inset 100px 0 0 0; 
+    color: #0E1E2B;
+}
+
+#answerD:hover {
+    transition: color .3s ease-in-out box-shadow .3s ease-in-out;
+    box-shadow: inset 100px 0 0 0; 
+    color: #0E1E2B;
+}
