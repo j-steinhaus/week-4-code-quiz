@@ -39,7 +39,7 @@
 
 >The URL of the deployed application
 >
->The URL of the GitHub repository. (README.md included)
+>The URL of the GitHub repository
 
 # Application Screenshots
->Not applicable
+>Not applicable at this time
