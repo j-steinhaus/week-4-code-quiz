@@ -4,19 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Coding Quiz</title>
     <link rel="stylesheet" href="../week-4-code-quiz/assets/css/style.css" />
+    <title>Coding Quiz</title>
+
   </head>
 
 <body>
-    <header>
-        <nav>
-            <button class="buttonHeader" id="view-high-score">High Scores</button>
-        </nav>
-        <nav>
-            <p>Time: <span id="timeLeft">xxx</span></p>
-        </nav>
-    </header>
+  <div id="gameCard" class="w3-container hide">
+
+    <h2 class="timer">TIMER: </h2>
+
+    <div id="card1" class="w3-card-4">
+      
+      <header class="w3-container w3-light-grey">
+        <h3 id="question">Question Goes HERE!</h3>
+      </header>
+
+      <hr style="margin-top:0; border-color:transparent;">
+
+      <div id="multipleChoice" class="w3-container">
+        <div class="questionLine">
+          <label id="mcA"></label>
+        </div><hr>
+
+        <div class="questionLine">
+          <label id="mcB"></label>
+        </div><hr>
+
+        <div class="questionLine">
+          <label id="mcC"></label>
+        </div><hr>
+
+        <div class="questionLine">
+          <label  id="mcD"></label>            
+        </div>
+
+      </div>
 
     <div id="mainDiv">
         <div id="gridContainer">
@@ -36,7 +59,50 @@
         <p id="CorrectWrong"></p>
     </div>
 
-<script src="../week-4-code-quiz/assets/js/app.js"></script>
+    <hr style="margin-top:0; border-color:transparent;">
+
+    <footer id="feedback1" class="w3-block w3-dark-grey">Do you think?</footer>
+
+  </div>
+
+    <!-- Player Input Window  -->
+    <div id="inputForm" class="w3-container hide">
+
+        <h1>!! HOLY MOLY GUACAMOLE - GAME OVER !!</h1>
+      
+        <h2>Your Score: <span id="scoreBtn" class="btn"></span> points!</h2>
+          <form>
+            <label for="initialsBox">Initials Here:</label><br>
+            <input id="initialsBox" type="text" maxlength="3"><br>
+            <input id="submitBtn" type="submit" class="btn">
+          </form>
+  
+    <!-- high score  -->
+    <div id="scoreCard" class="scoreCard hide">
+
+      <div id="scoreCard" class="w3-container hide">
+
+        <div id="card2" class="w3-card-4">
+          
+          <header class="w3-container w3-light-grey">
+            <h1>Top High Scores</h1>
+          </header>
+  
+          <hr style="margin-top:0; border-color:transparent;">
+          <div id="leaderBoard" class="w3-container" style="min-height: 275px"></div>
+    
+          <hr style="margin-top:0; border-color:transparent;">
+          <footer id="feedback2" class="w3-block w3-dark-grey">Cheers!</footer>
+        </div>
+  
+        <button id="backBtn" type="button" class="btn">Go Back</button>
+        <button id="clearBtn" type="button" class="btn">Clear High Score</button>
+  
+      </div>
+
+<script src="./assets/js/script.js"></script>
+<script src="./assets/js/questions.js"></script>
+
 </body>
 
   </html>

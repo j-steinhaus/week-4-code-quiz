@@ -20,6 +20,24 @@ header {
     padding-left: 15px;
 }
 
+#initialsBox {
+    border-color: #2C5F78;
+    height: 50px;
+    font-size: 50px;
+    text-align: center;
+    width: 100px;
+    border-radius: 15px;
+  }
+
+#card2 {
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: auto;
+    width: 60%;
+    border-radius: 15px;
+  }
+
 .buttonHeader {
     background-color: whitesmoke;
     text-decoration: none;
@@ -81,7 +99,7 @@ header {
     border-radius: 50%;
 }
 
-/* Hover Effects */
+/* hover effects */
 .buttonHeader:hover {
     transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
     box-shadow: inset 100px 0 0 0 #2C5F78;
