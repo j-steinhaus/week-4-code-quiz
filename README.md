@@ -1,6 +1,4 @@
 # Customer Request
->For this project the customer request:
->
 >Build a JavaScript Code Quiz that must contain the following:
 
 # Instructions on quiz play
