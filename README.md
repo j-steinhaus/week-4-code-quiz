@@ -1,9 +1,11 @@
 # Customer Request
 >For this project the customer request:
+>
 >Build a JavaScript Code Quiz that must contain the following:
 
 # Instructions on quiz play
 >A timer starting when quiz begins
+>
 >The ability to loop thru multiple choice questions & answers
 >Various buttons
 >Begin Quiz
