@@ -1,6 +1,9 @@
 # Customer Request
 >Build a JavaScript Code Quiz that must contain the following:
 
+# Deployed URL
+https://j-steinhaus.github.io/week-4-code-quiz/
+
 # Instructions on quiz play
 >A timer starting when quiz begins
 >
