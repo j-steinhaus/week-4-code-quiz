@@ -40,4 +40,10 @@
 >The URL of the GitHub repository
 
 # Application Screenshots
->Not applicable at this time
+<img width="980" alt="Screenshot 2022-08-08 at 6 55 07 PM" src="https://user-images.githubusercontent.com/107279088/183539531-c4a08bed-2e3e-4b08-bdda-39aa3db0355c.png">
+
+<img width="968" alt="Screenshot 2022-08-08 at 6 55 32 PM" src="https://user-images.githubusercontent.com/107279088/183539561-6a51899e-4cf5-454f-bb0d-b182163b1be5.png">
+
+<img width="945" alt="Screenshot 2022-08-08 at 6 55 45 PM" src="https://user-images.githubusercontent.com/107279088/183539592-10fc7a9e-657a-437c-acb6-d21ff5f2aaa7.png">
+
+
