@@ -2,81 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../week-4-code-quiz/assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Coding Quiz</title>
-
   </head>
 
-<body>
-  <div id="gameCard" class="w3-container hide">
-<!-- timer -->
-    <h2 class="timer">TIMER: </h2>
-
-    <!-- quiz section -->
-    <div id="mainDiv">
-        <div id="gridContainer">
-            <p id="questionDisplay">Let's test your coding knowledge!</p>
-            <p id="finalScore"></p>
-            <p id="enterInitials"></p>
-            <textarea id="enterInitials"></textarea>
-            <button class="btn" id="start-quiz">Ready.Set.Go!</button>
-            <button class="btn" id="answerA"></button>
-            <button class="btn" id="answerB"></button>
-            <button class="btn" id="answerC"></button>
-            <button class="btn" id="answerD"></button>
-            <button class="btn" id="submitScore">Submit Score!</button>
-        </div>
-
-        <div id="CorrectWrongGrid"></div>
-        <p id="CorrectWrong"></p>
-    </div>
-
-    <hr style="margin-top:0; border-color:transparent;">
-
-    <footer id="feedback1" class="w3-block w3-dark-grey">Do you think?</footer>
-
-  </div>
-
-    <!-- Player Input Window  -->
-    <div id="inputForm" class="w3-container hide">
-
-        <h1>!! HOLY MOLY GUACAMOLE - GAME OVER !!</h1>
-      
-        <h2>Your Score: <span id="scoreBtn" class="btn"></span> points!</h2>
-          <form>
-            <label for="initialsBox">Initials Here:</label><br>
-            <input id="initialsBox" type="text" maxlength="3"><br>
-            <input id="submitBtn" type="submit" class="btn">
-          </form>
-  
-    <!-- high score  -->
-    <div id="scoreCard" class="scoreCard hide">
-
-      <div id="scoreCard" class="w3-container hide">
-
-        <div id="card2" class="w3-card-4">
-          
-          <header class="w3-container w3-light-grey">
-            <h1>Top High Scores</h1>
-          </header>
-  
-          <hr style="margin-top:0; border-color:transparent;">
-          <div id="leaderBoard" class="w3-container" style="min-height: 275px"></div>
-    
-          <hr style="margin-top:0; border-color:transparent;">
-          <footer id="feedback2" class="w3-block w3-dark-grey">Cheers!</footer>
-        </div>
-  
-        <button id="backBtn" type="button" class="btn">Go Back</button>
-        <button id="clearBtn" type="button" class="btn">Clear High Score</button>
-  
+  <!-- body  -->
+  <body>
+    <!-- header -->
+    <header>
+      <div>
+        <a class="highscore" href="./highscores.html">view high scores</a>
       </div>
 
-<script src="./assets/js/script.js"></script>
-<script src="./assets/js/questions.js"></script>
+      <div class="timer">You got 40 Seconds!</div>
+    </header>
 
-</body>
+    <main>
+      <!--start area -->
+      <h1 class="title" id="Title">Coding Quiz Challenge</h1>
+      <p class="instructions">
+        Ready. Set. Go! Let's see if you can answer the questions before the
+        timer runs out!
+      </p>
 
-  </html>
+      <button id="start-button">Let's Go!</button>
+
+      <!-- questions -->
+      <section id="question-section" class="hidden">
+        <div id="current-score"></div>
+        <div class="question"></div>
+        <div id="answers" class="optionsArea"></div>
+        <br />
+        <p class="correct-wrong"></p>
+      </section>
+
+      <!--final scores-->
+      <div id="final-score" class="hidden">
+        <h1>ANNNNND you're done!!</h1>
+
+        <div id="scoreDisplay"></div>
+
+        <form id="score-entry-form">
+          <input
+            type="text"
+            name="initials"
+            placeholder="EXAMPLE: JS"
+            id="initials"
+          />
+          <button class="submit">
+            <a href="./highscores.html">Wanna submit?</a>
+          </button>
+        </form>
+      </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

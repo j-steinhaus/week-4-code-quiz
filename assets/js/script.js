@@ -1,264 +1,196 @@
-// global variables
-console.log("Hello");
-var beginQuiz = document.querySelector("#start-quiz");
-var timerDisplay = document.querySelector(".timer");
-var gameCard = document.querySelector("#gameCard");
-var leaderBtn = document.querySelector("#leaderBtn");
-var question = document.querySelector("#question");
-var mcA = document.querySelector("#mcA");
-var mcB = document.querySelector("#mcB");
-var mcC = document.querySelector("#mcC");
-var mcD = document.querySelector("#mcD");
-var answer = document.querySelector("#answer");
-var feedback = document.querySelector("#feedback1");
-var card = document.querySelector("#multipleChoice");
-var inputForm = document.querySelector("#inputForm");
-var scoreCard = document.querySelector("#scoreCard");
-var scoreBtn = document.querySelector("#scoreBtn");
-var initialsBox = document.querySelector("#initialsBox");
-var submitBtn = document.querySelector("#submitBtn");
-var backBtn = document.querySelector("#backBtn");
-var clearBtn = document.querySelector("#clearBtn");
-var start = document.querySelector(".start");
-//
-var questionBank = [
+var timerEl = document.querySelector(".timer");
+var title = document.querySelector(".title");
+var info = document.querySelector(".instructions");
+var startBtn = document.querySelector("#start-button");
+var questionSec = document.querySelector("#question-section");
+var questionEl = document.querySelector(".question");
+var options = document.querySelector(".optionsArea");
+var correctWrong = document.querySelector(".correct-wrong");
+var currentScore = document.querySelector("#current-score");
+var finalScore = document.querySelector("#final-score");
+var displayEndScore = document.querySelector("#scoreDisplay");
+var submitBtn = document.querySelector(".submit");
+var userInfoInput = document.querySelector("#initials");
+
+//declaring lets
+let timer;
+let score = 0;
+let timeLeft = 40;
+let currentQuestion = 0;
+
+let gameScore = localStorage.getItem("Game-Score");
+
+//declare question array
+var questions = [
   {
     question: "How does a WHILE loop start?",
-    selection: [
-      "while i = 1 to 10",
-      "while (i <= 10; i++)",
-      "while (var i = 0; i = 10; i++)",
-      "while (i <= 10)",
+    answers: [
+      { text: "while i = 1 to 10", correct: false },
+      { text: "while (i <= 10; i++)", correct: false },
+      { text: "while (var i = 0; i = 10; i++)", correct: false },
+      { text: "while (i <= 10)", correct: true },
     ],
-    answer: "while (i <= 10)",
   },
   {
     question: "How is a forEach statement different from a for statement?",
-    selection: [
-      "Only a for statement uses a callback function",
-      "A for statement is generic, but a forEach statement can be used only with an array",
-      "Only a forEach statement lets you specify your own iterator",
-      "A forEach statement is generic, but a for statement can be used only with an array",
+    answers: [
+      { text: "Only a for statement uses a callback function", correct: false },
+      {
+        text: "A for statement is generic, but a forEach statement can be used only with an array",
+        correct: true,
+      },
+      {
+        text: "Only a forEach statement lets you specify your own iterator",
+        correct: false,
+      },
+
+      {
+        text: "A forEach statement is generic, but a for statement can be used only with an array",
+        correct: false,
+      },
     ],
-    answer:
-      " A for statement is generic, but a forEach statement can be used only with an array",
   },
   {
     question: "How to write an IF statement in JavaScript?",
-    selection: ["if i = 5", "if (i == 5)", "if i = 5 then", "if i == 5 then"],
-    answer: "if (i == 5) ",
-  },
-  {
-    question: "How can you add a comment in a JavaScript?",
-    selection: [
-      "'This is a comment",
-      "//This is a comment",
-      "<!--This is a comment-->",
-      "<!**This is a comment**>",
+    answers: [
+      { text: "if i = 5", correct: false },
+      { text: "if (i == 5)", correct: true },
+      { text: "if i = 5 then", correct: false },
+      { text: "if i == 5 then", correct: false },
     ],
-    answer: "//This is a comment",
   },
   {
     question:
       "Which statement creates a new object using the Person constructor? Which statement creates a new Person object called 'student'?",
-    selection: [
-      "var student = new Person();",
-      "var student = construct Person;",
-      "var student = Person();",
-      "var student = construct Person();",
+    answers: [
+      { text: "var student = new Person();", correct: true },
+      { text: "var student = construct Person;", correct: false },
+      { text: "var student = Person();", correct: false },
+      { text: "var student = construct Person();", correct: false },
     ],
-    answer: "var student = new Person();",
   },
   {
     question: "How do you create a function in JavaScript?",
-    selection: [
-      "function = myFunction()",
-      "function:myFunction()",
-      "function myFunction()",
-      "$Function()",
+    answers: [
+      { text: "function = myFunction()", correct: false },
+      { text: "function:myFunction()", correct: false },
+      { text: "function myFunction()", correct: true },
+      { text: "$Function()", correct: false },
     ],
-    answer: "function myFunction()",
-  },
-  {
-    question: "JavaScript is the same as Java?",
-    selection: ["True", "False", "Maybe", "Your guess is as good as mine"],
-    answer: "False",
-  },
-  {
-    question: "How does a function create a closure?",
-    selection: [
-      "It reloads the document whenever the value changes",
-      "It returns a reference to a variable in its parent scope",
-      "It completes execution without returning",
-      "It copies a local variable to the global scope",
-    ],
-    answer: "It returns a reference to a variable in its parent scope",
   },
 ];
 
-//
-var timeLeft = questionBank.length * 15;
-var q = 0;
-var s = 0;
-var score = 0;
-var scoreList = [];
-var timeInterval;
+//Listens for click to START GAME
+startBtn.addEventListener("click", startGame);
 
-getScore();
+// WHEN I click the start button
+function startGame() {
+  //hide start button and instructions
+  startBtn.classList.add("hidden");
+  title.classList.add("hidden");
+  info.classList.add("hidden");
+  timerEl.textContent = `timer: ${timeLeft} Seconds Remaining`;
 
-// timer for the quiz
-function timer() {
-  timeInterval = setInterval(function () {
+  //add timer after start game btn clicked
+  timer = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = "TIMER: " + timeLeft;
+    timerEl.textContent = "timer: " + timeLeft + " Seconds Remaining";
 
-    if (timeLeft === 0 || q >= questionBank.length) {
-      clearInterval(timeInterval);
-      gameOver();
+    if (timeLeft <= 0) {
+      endGame();
+      timerEl.textContent = `timer: 0 Seconds Remaining`;
     }
   }, 1000);
+  //shows first question
+  showQuestion();
 }
 
-// questions & answers
-function displayQA() {
-  if (q < questionBank.length) {
-    question.textContent = questionBank[q].question;
-    mcA.textContent = questionBank[q].selection[0];
-    mcB.textContent = questionBank[q].selection[1];
-    mcC.textContent = questionBank[q].selection[2];
-    mcD.textContent = questionBank[q].selection[3];
-  } else {
-    gameOver();
-  }
-}
-
-// right or wrong
-function compareAnswer(event) {
-  if (q >= questionBank.length) {
-    gameOver();
-    clearInterval(timeInterval);
-  } else {
-    if (event === questionBank[q].answer) {
-      feedback1.textContent = "You are correct!";
-    } else {
-      timeLeft -= 10;
-      feedback1.textContent = "You are Wrong!";
-    }
-    score = timeLeft;
-    q++;
-    displayQA();
-  }
-}
-
-// scores from local storage
-function getScore() {
-  var storedScore = JSON.parse(localStorage.getItem("highScore"));
-  if (storedScore !== null) {
-    scoreList = storedScore;
-  }
-}
-
-// saving the scores to local storage
-function saveScore() {
-  localStorage.setItem("highScore", JSON.stringify(scoreList));
-}
-
-// displaying & hiding page items based on Game Over
-function gameOver() {
-  scoreBtn.innerHTML = score;
-  scoreBtn.style.display = "inline-block";
-  gameCard.classList.add("hide");
-  inputForm.classList.remove("hide");
-  timerDisplay.classList.add("hide");
-  leaderBtn.classList.add("hide");
-  leaderBoard();
-}
-
-// top 10 leaders
-function leaderBoard() {
-  removeFromLeaderBoard();
-  addToLeaderBoard();
-  scoreList.sort((a, b) => {
-    return b.score - a.score;
+// THEN a timer starts and I am presented with a question
+function showQuestion() {
+  currentScore.textContent = `score: ${score}`;
+  questionSec.classList.remove("hidden");
+  questionEl.textContent = questions[currentQuestion].question;
+  options.innerHTML = "";
+  questions[currentQuestion].answers.forEach((answer) => {
+    //create a button
+    var optionButton = document.createElement("button");
+    optionButton.textContent = answer.text;
+    optionButton.classList.add("btn");
+    optionButton.dataset.correct = answer.correct;
+    optionButton.addEventListener("click", evaluateAnswer);
+    options.append(optionButton);
   });
-  //only render the top 4 scores.
-  topTen = scoreList.slice(0, 10);
-
-  for (var i = 0; i < topTen.length; i++) {
-    var player = topTen[i].player;
-    var score = topTen[i].score;
-
-    var newDiv = document.createElement("div");
-    leaderBoardDiv.appendChild(newDiv);
-
-    var newLabel = document.createElement("label");
-    newLabel.textContent = player + " - " + score;
-    newDiv.appendChild(newLabel);
-  }
 }
 
-// initials to leader board
-function addToLeaderBoard() {
-  leaderBoardDiv = document.createElement("div");
-  leaderBoardDiv.setAttribute("id", "playerInitials");
-  document.getElementById("leaderBoard").appendChild(leaderBoardDiv);
-}
-
-// removing initials from leader board
-function removeFromLeaderBoard() {
-  var removeScores = document.getElementById("playerInitials");
-  if (removeScores !== null) {
-    removeScores.remove();
-  } else {
-  }
-}
-
-beginQuiz.addEventListener("click", function (event) {
-  timer();
-  displayQA();
-  start.classList.add("hide");
-  gameCard.classList.remove("hide");
-  leaderBtn.style.display = "none";
-  scoreCard.classList.add("hide");
-});
-
-card.addEventListener("click", function (event) {
-  var event = event.target;
-  compareAnswer(event.textContent.trim());
-});
-
-submitBtn.addEventListener("click", function (event) {
+//evaluate question whether it is correct or incorrect
+function evaluateAnswer(event) {
   event.preventDefault();
-  var playerInitials = initialsBox.value.trim();
-  var newScore = {
-    player: playerInitials,
-    score: score,
-  };
+  //evaluate whether correct and apply points to score
+  var isCorrect = event.target.dataset.correct;
 
-  scoreList.push(newScore);
-  saveScore();
-  leaderBoard();
-  inputForm.classList.add("hide");
-  scoreCard.classList.remove("hide");
-});
+  if (isCorrect === "true") {
+    correctWrong.textContent = "Right!";
+    //add points to score
+    score += 20;
+    currentScore.textContent = `score: ${score}`;
+  } else {
+    correctWrong.textContent = "Wrong!";
+    //deducts time when answered inccorectly
+    timeLeft -= 10;
+    timerEl.textContent = `timer: ${timeLeft} Seconds Remaining`;
+  }
 
-// leaderBtn.addEventListener("click", function (event) {
-//   scoreCard.classList.remove("hide");
-//   leaderBtn.classList.add("hide");
-//   start.classList.add("hide");
-//   leaderBoard();
-// });
+  //trigger the next question to appear
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    showQuestion();
+  } else {
+    endGame();
+    timerEl.textContent = `timer: 0 Seconds Remaining`;
+  }
+}
 
-// Event listener for go back button ??
-backBtn.addEventListener("click", function (event) {
-  location.reload();
-});
+//ends the game when there is no time left
+function endGame() {
+  //stopping the timer
+  clearInterval(timer);
+  //hide question section
+  questionSec.classList.add("hidden");
+  finalScore.classList.remove("hidden");
 
-// Event listener for clear scores button ??
-clearBtn.addEventListener("click", function (event) {
-  scoreList = [];
-  start.classList.add("hide");
-  localStorage.setItem("highScore", JSON.stringify(scoreList));
-  leaderBoard();
-  saveScore();
+  //create p tag inside of div
+  var endScore = document.createElement("p");
+  endScore.classList.add("end-score");
+  endScore.textContent = `your final score is: ${score}`;
+  displayEndScore.append(endScore);
+
+  //adds game info to localstorage
+  let scoreArray = [];
+  if (!gameScore) {
+    //pushes score to an array
+    scoreArray.push(score);
+    localStorage.setItem("Game-Score", JSON.stringify(scoreArray));
+  } else {
+    scoreArray = scoreArray.concat(JSON.parse(gameScore) || 0);
+    scoreArray.push(score);
+    localStorage.setItem("Game-Score", JSON.stringify(scoreArray));
+  }
+}
+
+//show the score entry form
+//when initials are inputed in text
+submitBtn.addEventListener("click", function (event) {
+  //event.preventDefault();
+
+  var userInput = userInfoInput.value.trim();
+  var gameInitial = localStorage.getItem("initials");
+  let initialArray = [];
+  if (!gameInitial) {
+    initialArray.push(userInput);
+    localStorage.setItem("initials", JSON.stringify(initialArray));
+  } else {
+    initialArray = initialArray.concat(JSON.parse(gameInitial) || 0);
+    initialArray.push(userInput);
+    localStorage.setItem("initials", JSON.stringify(initialArray));
+  }
 });

@@ -1,24 +1,8 @@
-* {
+/* * {
     margin: auto;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: whitesmoke;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    color: whitesmoke;
-    height:auto;
-    font-size: 20px;
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
 
 #initialsBox {
     border-color: #2C5F78;
@@ -75,15 +59,9 @@ header {
     color: whitesmoke
 }
 
-.btn {
-    background-color: whitesmoke;
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-    padding: 20px;
-}
 
-#answerA {
+/* button shape */
+/* #answerA {
     border-radius: 50%;
 }
 
@@ -99,11 +77,7 @@ header {
     border-radius: 50%;
 }
 
-/* hover effects */
-.buttonHeader:hover {
-    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
-    box-shadow: inset 100px 0 0 0 #2C5F78;
-    color: white;
+
 }
 
 #start-quiz:hover {
@@ -140,4 +114,92 @@ header {
     transition: color .3s ease-in-out box-shadow .3s ease-in-out;
     box-shadow: inset 100px 0 0 0; 
     color: #0E1E2B;
+} */ 
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+body{  
+    text-align: center;
+    background-image: linear-gradient(to bottom right, purple, yellow);
+    margin: 300px;
+    
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: whitesmoke;
+    height:auto;
+    font-size: 20px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.timer{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+main{
+    margin-top: 70px;
+    color: whitesmoke;
+ 
+}
+
+p{
+    padding: 0% 25%;
+    margin: 30px;
+}
+
+
+button{
+    background-color: whitesmoke;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px;
+    padding-top: 20px;
+}
+
+/* hover effects  */
+button:hover{
+    background-color: lightsalmon;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.optionsArea{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 20%;
+    margin: auto;
+}
+
+#question-section {
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+input{
+    padding: 12px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+
